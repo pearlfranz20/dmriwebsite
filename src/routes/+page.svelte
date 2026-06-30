@@ -7,25 +7,27 @@
 </svelte:head>
 
 <section class="hero">
-	<div class="hero-copy">
+	<div class="hero-header">
 		<p class="eyebrow">DMRI analysis services</p>
+	</div>
+	<div class="hero-copy">
 		<h1>Turn raw MRI scans into tract-level evidence.</h1>
 		<p class="lead">
-			I help researchers and clinicians analyze diffusion MRI data to reveal which white matter tracts
-			are associated with specific traits, and to track how tract density changes across time.
+			I help researchers and clinicians analyze diffusion MRI data to build connectometry databases,
+			quantify longitudinal change, perform fingerprinting, generate population-average templates,
+			and carry out correlational tractography and fiber tracking with visualization.
 		</p>
 		<div class="actions">
-			<a class="button primary" href="mailto:hello@dmrianalytics.example">Request a consultation</a>
-			<a class="button secondary" href="#services">Explore services</a>
+			<a class="button primary" href="/inquiry">Request a consultation</a>
 		</div>
 	</div>
 
 	<div class="hero-card">
 		<h2>What I offer</h2>
 		<ul>
-			<li>Trait-associated tract analysis from raw dMRI data</li>
-			<li>Longitudinal tracking of tract density change</li>
-			<li>Statistical reporting with interpretable figures</li>
+			<li>Connectometry database creation and longitudinal change analysis</li>
+			<li>Fingerprinting and population-average template generation</li>
+			<li>Correlational tractography and fiber tracking with visualization</li>
 		</ul>
 	</div>
 </section>
@@ -38,26 +40,26 @@
 
 	<div class="card-grid">
 		<article class="card">
-			<h3>Trait association analysis</h3>
+			<h3>Connectometry<br />& longitudinal analysis</h3>
 			<p>
-				Identify statistically significant tracts linked to demographic, behavioral, or clinical traits
-				using robust diffusion MRI analysis workflows.
+				Build connectometry databases and quantify longitudinal changes in tract structure or density over
+				time.
 			</p>
 		</article>
 
 		<article class="card">
-			<h3>Longitudinal change analysis</h3>
+			<h3>Fingerprinting<br />& population templates</h3>
 			<p>
-				Track how tract density or microstructural measures evolve over time and summarize meaningful
-				changes across visits or cohorts.
+				Apply fingerprinting approaches and generate population-average templates to summarize group-level
+				structure and variability.
 			</p>
 		</article>
 
 		<article class="card">
-			<h3>Clear reporting</h3>
+			<h3>Correlational tractography<br />& visualization</h3>
 			<p>
-				Receive concise reports, statistical summaries, and publication-ready visuals that make your
-				findings easy to interpret and share.
+				Perform correlational tractography analyses and fiber tracking workflows, with visualization that
+				supports interpretation and presentation.
 			</p>
 		</article>
 	</div>
@@ -88,18 +90,31 @@
 	</div>
 </section>
 
+<section class="qualifications">
+	<div class="section-header">
+		<p class="eyebrow">Qualifications</p>
+		<h2>Training grounded in neuroscience, engineering, and tractography research.</h2>
+	</div>
+	<p class="qual-paragraph">
+		I hold a B.S. in Neuroscience and an M.S. in Biomedical Engineering, and I completed both degrees at
+		Carnegie Mellon University. I also did research as part of Dr. Yeh’s fiber tractography work at the
+		University of Pittsburgh, which helped shape my quantitative and imaging background and gave me a
+		strong foundation for analyzing diffusion MRI data and interpreting tract-level findings.
+	</p>
+</section>
+
 <section class="contact">
 	<h2>Interested in a DMRI analysis project?</h2>
 	<p>Let’s discuss your dataset, your question, and the kind of tract-level insight you need.</p>
-	<a class="button primary" href="mailto:hello@dmrianalytics.example">Start a conversation</a>
+	<a class="button primary" href="/inquiry">Start a conversation</a>
 </section>
 
 <style>
 	:global(body) {
 		margin: 0;
-		font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
-		background: linear-gradient(135deg, #07111f 0%, #10243e 100%);
-		color: #f5f7fb;
+		font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+		background: linear-gradient(135deg, #f7fbff 0%, #e4f2ff 45%, #ffe9d6 100%);
+		color: #12304a;
 	}
 
 	:global(*) {
@@ -117,29 +132,45 @@
 		grid-template-columns: 1.3fr 0.9fr;
 		gap: 2rem;
 		align-items: center;
-		padding-top: 5rem;
+		padding-top: 3rem;
+	}
+
+	.hero-header {
+		grid-column: 1 / -1;
+		margin-bottom: 0.75rem;
+		padding: 0.9rem 0;
+		border-bottom: 1px solid rgba(15, 108, 159, 0.16);
+		width: 100%;
 	}
 
 	.eyebrow {
 		text-transform: uppercase;
-		letter-spacing: 0.2em;
-		font-size: 0.8rem;
-		font-weight: 700;
-		color: #7dd3fc;
-		margin-bottom: 0.75rem;
+		letter-spacing: 0.18em;
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #0f6c9f;
+		margin: 0 0 0.75rem;
+		display: block;
+		width: 100%;
 	}
 
 	h1 {
+		font-family: 'Manrope', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
 		font-size: clamp(2.2rem, 4vw, 3.5rem);
 		line-height: 1.1;
 		margin: 0 0 1rem;
+	}
+
+	h2,
+	h3 {
+		font-family: 'Manrope', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
 	}
 
 	.lead {
 		font-size: 1.08rem;
 		line-height: 1.7;
 		max-width: 680px;
-		color: #d0dce9;
+		color: #355066;
 	}
 
 	.actions {
@@ -163,37 +194,48 @@
 	}
 
 	.button.primary {
-		background: #7dd3fc;
-		color: #02121f;
+		background: #1397d8;
+		color: #ffffff;
 	}
 
 	.button.secondary {
-		border: 1px solid rgba(125, 211, 252, 0.35);
-		color: #f5f7fb;
+		border: 1px solid rgba(19, 151, 216, 0.25);
+		color: #12304a;
+		background: rgba(255, 255, 255, 0.7);
 	}
 
 	.hero-card,
 	.card,
 	.contact {
-		background: rgba(255, 255, 255, 0.07);
+		background: rgba(255, 255, 255, 0.82);
 		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255, 255, 255, 0.13);
+		border: 1px solid rgba(17, 84, 122, 0.12);
 		border-radius: 1.2rem;
 		padding: 1.4rem;
-		box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 18px 45px rgba(28, 86, 121, 0.16);
 	}
 
 	.hero-card ul {
 		padding-left: 1.1rem;
 		line-height: 1.8;
-		color: #dce9f7;
+		color: #355066;
+	}
+
+	.hero-image {
+		width: 100%;
+		height: 220px;
+		object-fit: cover;
+		border-radius: 1rem;
+		margin-top: 1rem;
+		display: block;
 	}
 
 	.section-header {
 		margin-bottom: 1.5rem;
 	}
 
-	.card-grid {
+	.card-grid,
+	.qualifications-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1rem;
@@ -203,6 +245,14 @@
 		margin-top: 0;
 	}
 
+	.qual-paragraph {
+		font-size: 1.05rem;
+		line-height: 1.8;
+		max-width: 850px;
+		color: #355066;
+		margin: 0;
+	}
+
 	.steps {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -210,7 +260,7 @@
 	}
 
 	.steps div {
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(255, 255, 255, 0.7);
 		padding: 1.2rem;
 		border-radius: 1rem;
 	}
@@ -222,14 +272,15 @@
 		width: 2rem;
 		height: 2rem;
 		border-radius: 50%;
-		background: #7dd3fc;
-		color: #02121f;
+		background: #1397d8;
+		color: #ffffff;
 		font-weight: 700;
 		margin-bottom: 0.75rem;
 	}
 
 	.contact {
 		text-align: center;
+		margin-bottom: 2rem;
 	}
 
 	@media (max-width: 860px) {
