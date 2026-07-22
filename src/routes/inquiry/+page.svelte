@@ -1,3 +1,57 @@
+<script lang="ts">
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
+	let submitted = $state(false);
+	let statusMessage = $state('');
+	let isSubmitting = $state(false);
+
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+		const trimmedName = name.trim();
+		const trimmedEmail = email.trim();
+		const trimmedMessage = message.trim();
+
+		if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+			submitted = false;
+			statusMessage = 'Please fill in your name, email, and project details.';
+			return;
+		}
+
+		isSubmitting = true;
+		statusMessage = 'Sending…';
+
+		try {
+			const response = await fetch('/api/inquiry', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: trimmedName,
+					email: trimmedEmail,
+					message: trimmedMessage
+				})
+			});
+
+			if (!response.ok) {
+				throw new Error('Unable to send your message right now.');
+			}
+
+			submitted = true;
+			statusMessage = 'Thanks! Your message was sent successfully.';
+			name = '';
+			email = '';
+			message = '';
+		} catch (error) {
+			submitted = false;
+			statusMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+		} finally {
+			isSubmitting = false;
+		}
+	}
+</script>
+
 <svelte:head>
 	<title>Contact | DMRI Analytics</title>
 	<meta name="description" content="Submit an inquiry for DMRI analysis services." />
@@ -13,23 +67,31 @@
 			NIfTI, Bruker 2dseq, and Varian fdf formats.
 		</p>
 
-		<form>
+		<form on:submit|preventDefault={handleSubmit}>
 			<label>
 				<span>Name</span>
-				<input type="text" name="name" placeholder="Your name" />
+				<input type="text" name="name" bind:value={name} placeholder="Your name" />
 			</label>
 
 			<label>
 				<span>Email</span>
-				<input type="email" name="email" placeholder="you@example.com" />
+				<input type="email" name="email" bind:value={email} placeholder="you@example.com" />
 			</label>
 
 			<label>
 				<span>Project details</span>
-				<textarea name="message" rows="6" placeholder="Describe the MRI data, analysis goals, and any timeline considerations."></textarea>
+				<textarea name="message" rows="6" bind:value={message} placeholder="Describe the MRI data, analysis goals, and any timeline considerations."></textarea>
 			</label>
 
-			<button type="submit">Send inquiry</button>
+			{#if statusMessage}
+				<p class={submitted ? 'success' : 'error'} role="status" aria-live="polite">
+					{statusMessage}
+				</p>
+			{/if}
+
+			<button type="submit" disabled={isSubmitting}>
+				{isSubmitting ? 'Sending…' : 'Send inquiry'}
+			</button>
 		</form>
 	</div>
 </section>
@@ -112,5 +174,30 @@
 		font-weight: 700;
 		cursor: pointer;
 		justify-self: start;
+	}
+
+	button:disabled {
+		opacity: 0.7;
+		cursor: wait;
+	}
+
+	.success,
+	.error {
+		margin: 0;
+		padding: 0.8rem 1rem;
+		border-radius: 0.8rem;
+		font-weight: 600;
+	}
+
+	.success {
+		background: #e8f8ee;
+		color: #1f6b3a;
+		border: 1px solid rgba(31, 107, 58, 0.2);
+	}
+
+	.error {
+		background: #fff1f0;
+		color: #a33a2f;
+		border: 1px solid rgba(163, 58, 47, 0.2);
 	}
 </style>
