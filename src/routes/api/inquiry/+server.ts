@@ -2,9 +2,22 @@ import { env } from '$env/dynamic/private';
 import type { RequestHandler } from '@sveltejs/kit';
 import { Resend } from 'resend';
 
-const resendApiKey = env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+const resendApiKey = env.RESEND_API_KEY || process.env.RESEND_API_KEY || '';
 const recipientEmail = env.CONTACT_TO_EMAIL || process.env.CONTACT_TO_EMAIL || 'pfranz@alumni.cmu.edu';
-const resend = new Resend(resendApiKey);
+
+let resend: Resend | null = null;
+
+function getResendClient() {
+	if (!resendApiKey) {
+		return null;
+	}
+
+	if (!resend) {
+		resend = new Resend(resendApiKey);
+	}
+
+	return resend;
+}
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
@@ -43,7 +56,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			});
 		}
 
-		if (!resendApiKey) {
+		const client = getResendClient();
+		if (!client) {
 			return new Response(JSON.stringify({ error: 'Email delivery is not configured.' }), {
 				status: 500,
 				headers: { 'content-type': 'application/json' }
@@ -53,7 +67,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		const subject = `DMRI inquiry from ${name}`;
 		const text = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
 
-		await resend.emails.send({
+		await client.emails.send({
 			from: 'DMRI Contact <onboarding@resend.dev>',
 			to: [recipientEmail],
 			subject,
