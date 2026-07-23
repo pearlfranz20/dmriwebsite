@@ -1,9 +1,41 @@
 <svelte:head>
-	<title>DMRI Analytics | Tract-Level Insights from MRI Data</title>
+	<title>DMRI Analytics | Diffusion MRI Analysis Services</title>
 	<meta
 		name="description"
-		content="DMRI analysis services for identifying statistically significant tracts linked to traits and tracking longitudinal tract density changes over time."
+		content="DMRI analysis services for connectometry, longitudinal change analysis, fingerprinting, tractography, and visualization of diffusion MRI data."
 	/>
+	<meta
+		name="keywords"
+		content="diffusion MRI, DMRI analysis, connectometry, tractography, neuroimaging, longitudinal MRI analysis"
+	/>
+	<meta name="author" content="DMRI Analytics" />
+	<meta name="robots" content="index,follow" />
+	<link rel="canonical" href="https://dmri-analytics.com/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="DMRI Analytics | Diffusion MRI Analysis Services" />
+	<meta
+		property="og:description"
+		content="Turn raw MRI scans into tract-level evidence with connectometry, longitudinal analysis, fingerprinting, and tractography workflows."
+	/>
+	<meta property="og:url" content="https://dmri-analytics.com/" />
+	<meta property="og:site_name" content="DMRI Analytics" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="DMRI Analytics | Diffusion MRI Analysis Services" />
+	<meta
+		name="twitter:description"
+		content="Turn raw MRI scans into tract-level evidence with connectometry, longitudinal analysis, fingerprinting, and tractography workflows."
+	/>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "ProfessionalService",
+			"name": "DMRI Analytics",
+			"url": "https://dmri-analytics.com/",
+			"description": "Diffusion MRI analysis services for connectometry, longitudinal change analysis, fingerprinting, tractography, and visualization.",
+			"areaServed": "Worldwide",
+			"serviceType": ["Diffusion MRI analysis", "Connectometry analysis", "Tractography visualization"]
+		}
+	</script>
 </svelte:head>
 
 <section class="hero">

@@ -54,7 +54,30 @@
 
 <svelte:head>
 	<title>Contact | DMRI Analytics</title>
-	<meta name="description" content="Submit an inquiry for DMRI analysis services." />
+	<meta name="description" content="Submit an inquiry for diffusion MRI analysis services, including connectometry, tractography, and longitudinal tract change workflows." />
+	<meta name="robots" content="index,follow" />
+	<link rel="canonical" href="https://dmri-analytics.com/inquiry" />
+	<meta property="og:title" content="Contact DMRI Analytics" />
+	<meta
+		property="og:description"
+		content="Request a consultation for diffusion MRI analysis, tractography, and longitudinal MRI data workflows."
+	/>
+	<meta property="og:url" content="https://dmri-analytics.com/inquiry" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Contact DMRI Analytics" />
+	<meta
+		name="twitter:description"
+		content="Request a consultation for diffusion MRI analysis, tractography, and longitudinal MRI data workflows."
+	/>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebPage",
+			"name": "Contact DMRI Analytics",
+			"url": "https://dmri-analytics.com/inquiry",
+			"description": "Contact page for diffusion MRI analysis consultation and inquiry requests."
+		}
+	</script>
 </svelte:head>
 
 <section class="page">
