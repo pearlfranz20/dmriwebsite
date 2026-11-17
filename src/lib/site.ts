@@ -10,7 +10,7 @@ export const site = {
 	url: 'https://dmri-analytics.com',
 	author: {
 		// TODO: replace with your real name.
-		name: 'Your Name',
+		name: 'Pearl Franz',
 		email: 'pfranz@alumni.cmu.edu',
 		bio: 'B.S. Neuroscience and M.S. Biomedical Engineering, Carnegie Mellon University. Research in fiber tractography in Dr. Yeh’s lab at the University of Pittsburgh.'
 	}
