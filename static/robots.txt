@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://dmri-analytics.com/sitemap.xml
+Sitemap: https://dmriwebsite.vercel.app/sitemap.xml

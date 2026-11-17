@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dmri-analytics.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://dmri-analytics.com/diffusion</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://dmri-analytics.com/structural</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://dmri-analytics.com/functional</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://dmri-analytics.com/viewer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://dmri-analytics.com/about</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/diffusion</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/structural</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/functional</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/viewer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmriwebsite.vercel.app/about</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
 </urlset>

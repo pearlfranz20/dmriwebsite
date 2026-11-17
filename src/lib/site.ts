@@ -7,7 +7,7 @@ export const site = {
 	tagline: 'How a brain MRI becomes a number you can trust.',
 	description:
 		'An interactive walkthrough of how diffusion, structural, and functional brain MRI are processed, with live demos and an in-browser viewer that can process your own NIfTI files.',
-	url: 'https://dmri-analytics.com',
+	url: 'https://dmriwebsite.vercel.app',
 	author: {
 		// TODO: replace with your real name.
 		name: 'Pearl Franz',
