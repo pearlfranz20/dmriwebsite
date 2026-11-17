@@ -1,324 +1,265 @@
+<script lang="ts">
+	import Tracts from '$lib/components/Tracts.svelte';
+	import { site, modalities } from '$lib/site';
+
+	const title = `${site.name} · How brain MRI gets processed`;
+</script>
+
 <svelte:head>
-	<title>DMRI Analytics | Diffusion MRI Analysis Services</title>
-	<meta
-		name="description"
-		content="DMRI analysis services for connectometry, longitudinal change analysis, fingerprinting, tractography, and visualization of diffusion MRI data."
-	/>
-	<meta
-		name="keywords"
-		content="diffusion MRI, DMRI analysis, connectometry, tractography, neuroimaging, longitudinal MRI analysis"
-	/>
-	<meta name="author" content="DMRI Analytics" />
-	<meta name="robots" content="index,follow" />
-	<link rel="canonical" href="https://dmri-analytics.com/" />
+	<title>{title}</title>
+	<meta name="description" content={site.description} />
+	<link rel="canonical" href="{site.url}/" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="DMRI Analytics | Diffusion MRI Analysis Services" />
-	<meta
-		property="og:description"
-		content="Turn raw MRI scans into tract-level evidence with connectometry, longitudinal analysis, fingerprinting, and tractography workflows."
-	/>
-	<meta property="og:url" content="https://dmri-analytics.com/" />
-	<meta property="og:site_name" content="DMRI Analytics" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="DMRI Analytics | Diffusion MRI Analysis Services" />
-	<meta
-		name="twitter:description"
-		content="Turn raw MRI scans into tract-level evidence with connectometry, longitudinal analysis, fingerprinting, and tractography workflows."
-	/>
-	<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "ProfessionalService",
-			"name": "DMRI Analytics",
-			"url": "https://dmri-analytics.com/",
-			"description": "Diffusion MRI analysis services for connectometry, longitudinal change analysis, fingerprinting, tractography, and visualization.",
-			"areaServed": "Worldwide",
-			"serviceType": ["Diffusion MRI analysis", "Connectometry analysis", "Tractography visualization"]
-		}
-	</script>
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={site.description} />
+	<meta property="og:url" content="{site.url}/" />
 </svelte:head>
 
-<section class="hero">
-	<div class="hero-header">
-		<p class="eyebrow">DMRI analysis services</p>
-	</div>
+<section class="hero wrap">
 	<div class="hero-copy">
-		<h1>Turn raw MRI scans into tract-level evidence.</h1>
+		<p class="eyebrow">Interactive explainer · runs in your browser</p>
+		<h1>{site.tagline}</h1>
 		<p class="lead">
-			I help researchers and clinicians analyze diffusion MRI data to build connectometry databases,
-			quantify longitudinal change, perform fingerprinting, generate population-average templates,
-			and carry out correlational tractography and fiber tracking with visualization.
+			Between the scanner and the figure in a paper sit a dozen processing steps that most people
+			never see. This site walks through them for diffusion, structural, and functional MRI, with a
+			live demo at every step that you can push until it breaks. When you're done, load your own
+			scan and run the pipeline on it. Nothing leaves your machine.
 		</p>
 		<div class="actions">
-			<a class="button primary" href="/inquiry">Request a consultation</a>
+			<a class="btn btn-primary" href="/diffusion">Start with diffusion MRI</a>
+			<a class="btn btn-ghost" href="/viewer">Process your own data</a>
 		</div>
 	</div>
-
-	<div class="hero-card">
-		<h2>What I offer</h2>
-		<ul>
-			<li>Connectometry database creation and longitudinal change analysis</li>
-			<li>Fingerprinting and population-average template generation</li>
-			<li>Correlational tractography and fiber tracking with visualization</li>
-		</ul>
-	</div>
+	<figure class="hero-art">
+		<Tracts />
+	</figure>
 </section>
 
-<section id="services" class="services">
-	<div class="section-header">
-		<p class="eyebrow">Services</p>
-		<h2>Focused analyses for neuroimaging questions.</h2>
-	</div>
-
-	<div class="card-grid">
-		<article class="card">
-			<h3>Connectometry<br />& longitudinal analysis</h3>
+<section class="paths wrap">
+	<header class="section-head">
+		<p class="eyebrow">Three modalities</p>
+		<h2>Pick a pipeline</h2>
+	</header>
+	<div class="grid">
+		{#each modalities as m (m.slug)}
+			<a class="card" href="/{m.slug}" style="--card-accent: {m.accent}">
+				<span class="card-short">{m.short}</span>
+				<h3>{m.title}</h3>
+				<p>{m.blurb}</p>
+				<span class="card-meta">{m.steps} steps · interactive</span>
+			</a>
+		{/each}
+		<a class="card viewer" href="/viewer">
+			<span class="card-short">NIfTI in, maps out</span>
+			<h3>Process your data</h3>
 			<p>
-				Build connectometry databases and quantify longitudinal changes in tract structure or density over
-				time.
+				Drop in a NIfTI file. Fit a diffusion tensor, segment tissue, and look at the result in a
+				proper 3D viewer, all in the browser.
 			</p>
-		</article>
+			<span class="card-meta">no upload · no install</span>
+		</a>
+	</div>
+</section>
 
-		<article class="card">
-			<h3>Fingerprinting<br />& population templates</h3>
+<section class="why wrap">
+	<div class="why-grid">
+		<div>
+			<p class="eyebrow">Why this exists</p>
+			<h2>Pipelines are taught as commands. They should be taught as decisions.</h2>
+		</div>
+		<div class="why-body">
 			<p>
-				Apply fingerprinting approaches and generate population-average templates to summarize group-level
-				structure and variability.
+				Most people learn neuroimaging by inheriting a script. It runs, it produces a map, and the
+				map goes in the paper. What the script assumed, where it is fragile, and which knob changed
+				the result are rarely visible. Every demo here is built so that you can turn the knob
+				yourself.
 			</p>
-		</article>
-
-		<article class="card">
-			<h3>Correlational tractography<br />& visualization</h3>
 			<p>
-				Perform correlational tractography analyses and fiber tracking workflows, with visualization that
-				supports interpretation and presentation.
+				Written for people who just joined an imaging lab, by someone who did the same not long
+				ago. All demos use a synthetic phantom so nothing here is a real patient. The methods and
+				the failure modes are real.
 			</p>
-		</article>
-	</div>
-</section>
-
-<section class="workflow">
-	<div class="section-header">
-		<p class="eyebrow">Workflow</p>
-		<h2>From data to insight in three steps.</h2>
-	</div>
-
-	<div class="steps">
-		<div>
-			<span>1</span>
-			<h3>Share your scans</h3>
-			<p>Provide the raw MRI data and any trait or longitudinal metadata you want analyzed.</p>
-		</div>
-		<div>
-			<span>2</span>
-			<h3>Run the analysis</h3>
-			<p>I process the data and identify significant tract-level patterns with statistical support.</p>
-		</div>
-		<div>
-			<span>3</span>
-			<h3>Receive results</h3>
-			<p>Get a clear summary of findings, figures, and next-step recommendations.</p>
+			<a class="more" href="/about">About the author →</a>
 		</div>
 	</div>
-</section>
-
-<section class="qualifications">
-	<div class="section-header">
-		<p class="eyebrow">Qualifications</p>
-		<h2>Training grounded in neuroscience, engineering, and tractography research.</h2>
-	</div>
-	<p class="qual-paragraph">
-		I hold a B.S. in Neuroscience and an M.S. in Biomedical Engineering, and I completed both degrees at
-		Carnegie Mellon University. I also did research as part of Dr. Yeh’s fiber tractography work at the
-		University of Pittsburgh, which helped shape my quantitative and imaging background and gave me a
-		strong foundation for analyzing diffusion MRI data and interpreting tract-level findings.
-	</p>
-</section>
-
-<section class="contact">
-	<h2>Interested in a DMRI analysis project?</h2>
-	<p>Let’s discuss your dataset, your question, and the kind of tract-level insight you need.</p>
-	<a class="button primary" href="/inquiry">Start a conversation</a>
 </section>
 
 <style>
-	:global(body) {
-		margin: 0;
-		font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-		background: linear-gradient(135deg, #f7fbff 0%, #e4f2ff 45%, #ffe9d6 100%);
-		color: #12304a;
-	}
-
-	:global(*) {
-		box-sizing: border-box;
-	}
-
-	section {
-		width: min(1120px, calc(100% - 2rem));
-		margin: 0 auto;
-		padding: 4rem 0;
-	}
-
 	.hero {
 		display: grid;
-		grid-template-columns: 1.3fr 0.9fr;
-		gap: 2rem;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		gap: clamp(2rem, 5vw, 4.5rem);
 		align-items: center;
-		padding-top: 3rem;
+		padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
 	}
 
-	.hero-header {
-		grid-column: 1 / -1;
-		margin-bottom: 0.75rem;
-		padding: 0.9rem 0;
-		border-bottom: 1px solid rgba(15, 108, 159, 0.16);
-		width: 100%;
-	}
-
-	.eyebrow {
-		text-transform: uppercase;
-		letter-spacing: 0.18em;
-		font-size: 1.25rem;
-		font-weight: 800;
-		color: #0f6c9f;
-		margin: 0 0 0.75rem;
-		display: block;
-		width: 100%;
-	}
-
-	h1 {
-		font-family: 'Manrope', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-		font-size: clamp(2.2rem, 4vw, 3.5rem);
-		line-height: 1.1;
-		margin: 0 0 1rem;
-	}
-
-	h2,
-	h3 {
-		font-family: 'Manrope', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+	.hero h1 {
+		font-size: clamp(2.6rem, 5.2vw, 4.2rem);
+		font-weight: 400;
+		font-variation-settings: 'opsz' 144;
+		letter-spacing: -0.025em;
 	}
 
 	.lead {
-		font-size: 1.08rem;
-		line-height: 1.7;
-		max-width: 680px;
-		color: #355066;
+		margin-top: 1.5rem;
+		font-size: 1.1rem;
+		line-height: 1.65;
+		color: var(--ink-2);
+		max-width: 56ch;
 	}
 
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
-		margin-top: 1.5rem;
+		gap: 0.75rem;
+		margin-top: 2rem;
 	}
 
-	.button {
-		display: inline-block;
-		padding: 0.8rem 1.15rem;
-		border-radius: 999px;
-		text-decoration: none;
-		font-weight: 600;
-		transition: transform 160ms ease;
+	.hero-art {
+		margin: 0;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow), 0 40px 80px -40px rgba(11, 31, 46, 0.5);
+		overflow: hidden;
 	}
 
-	.button:hover {
-		transform: translateY(-1px);
-	}
-
-	.button.primary {
-		background: #1397d8;
-		color: #ffffff;
-	}
-
-	.button.secondary {
-		border: 1px solid rgba(19, 151, 216, 0.25);
-		color: #12304a;
-		background: rgba(255, 255, 255, 0.7);
-	}
-
-	.hero-card,
-	.card,
-	.contact {
-		background: rgba(255, 255, 255, 0.82);
-		backdrop-filter: blur(10px);
-		border: 1px solid rgba(17, 84, 122, 0.12);
-		border-radius: 1.2rem;
-		padding: 1.4rem;
-		box-shadow: 0 18px 45px rgba(28, 86, 121, 0.16);
-	}
-
-	.hero-card ul {
-		padding-left: 1.1rem;
-		line-height: 1.8;
-		color: #355066;
-	}
-
-	.hero-image {
-		width: 100%;
-		height: 220px;
-		object-fit: cover;
-		border-radius: 1rem;
-		margin-top: 1rem;
-		display: block;
-	}
-
-	.section-header {
+	.section-head {
 		margin-bottom: 1.5rem;
 	}
 
-	.card-grid,
-	.qualifications-grid {
+	.section-head h2,
+	.why h2 {
+		font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+	}
+
+	.paths {
+		padding: clamp(2rem, 5vw, 4rem) 0;
+	}
+
+	.grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1px;
+		background: var(--line);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1.6rem 1.5rem;
+		background: var(--paper);
+		text-decoration: none;
+		position: relative;
+		transition: background-color 160ms ease;
+	}
+
+	.card::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		background: var(--card-accent, var(--ink));
+		opacity: 0;
+		transition: opacity 160ms ease;
+	}
+
+	.card:hover {
+		background: #fbf9f4;
+	}
+
+	.card:hover::before {
+		opacity: 1;
+	}
+
+	.card-short {
+		font: 500 0.7rem var(--font-mono);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
 	}
 
 	.card h3 {
-		margin-top: 0;
+		font-size: 1.4rem;
 	}
 
-	.qual-paragraph {
-		font-size: 1.05rem;
-		line-height: 1.8;
-		max-width: 850px;
-		color: #355066;
-		margin: 0;
+	.card p {
+		color: var(--ink-2);
+		font-size: 0.93rem;
+		flex: 1;
 	}
 
-	.steps {
+	.card-meta {
+		font: 500 0.7rem var(--font-mono);
+		color: var(--accent-ink);
+		margin-top: 0.5rem;
+	}
+
+	.card.viewer {
+		background: var(--navy);
+		color: #e9eef2;
+	}
+
+	.card.viewer p {
+		color: #b4c0cb;
+	}
+
+	.card.viewer .card-meta {
+		color: #6fd3e4;
+	}
+
+	.card.viewer:hover {
+		background: var(--navy-2);
+	}
+
+	.why {
+		padding: clamp(2rem, 5vw, 4rem) 0;
+	}
+
+	.why-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: clamp(2rem, 5vw, 4rem);
+		padding-top: 3rem;
+		border-top: 1px solid var(--line);
 	}
 
-	.steps div {
-		background: rgba(255, 255, 255, 0.7);
-		padding: 1.2rem;
-		border-radius: 1rem;
+	.why-body p {
+		color: var(--ink-2);
+		margin-bottom: 1rem;
+		max-width: 60ch;
 	}
 
-	.steps span {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2rem;
-		height: 2rem;
-		border-radius: 50%;
-		background: #1397d8;
-		color: #ffffff;
-		font-weight: 700;
-		margin-bottom: 0.75rem;
+	.more {
+		text-decoration: none;
+		color: var(--accent-ink);
+		font-weight: 500;
 	}
 
-	.contact {
-		text-align: center;
-		margin-bottom: 2rem;
+	@media (max-width: 960px) {
+		.hero {
+			grid-template-columns: 1fr;
+		}
+
+		.hero-art {
+			max-width: 620px;
+		}
+
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.why-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
-	@media (max-width: 860px) {
-		.hero,
-		.card-grid,
-		.steps {
+	@media (max-width: 560px) {
+		.grid {
 			grid-template-columns: 1fr;
 		}
 	}
